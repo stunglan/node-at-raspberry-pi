@@ -1,0 +1,23 @@
+{
+  "name": "noderasp",
+  "version": "1.0.0",
+  "description": "communicate with arduino and publish data",
+  "main": "index.js",
+  "dependencies": {
+    "rf24": "0.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stunglan/noderasp.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/stunglan/noderasp/issues"
+  },
+  "homepage": "https://github.com/stunglan/noderasp#readme"
+}
