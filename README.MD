@@ -1,6 +1,6 @@
 #Test node on raspberry pi
 
-hente node
+hente node <p/>
 fra http://node-arm.herokuapp.com/
 
 install npm
