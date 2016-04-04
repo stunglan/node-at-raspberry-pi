@@ -17,6 +17,7 @@
 #include "RF24.h"
 #include "printf.h"
 int relay = 3;
+int i = 0;
 
 //
 // Hardware conf
@@ -52,9 +53,8 @@ void setup(void)
   radio.begin();
   radio.setChannel(1);
   radio.setRetries(15,15);
-
-  radio.openWritingPipe(pipes[1]);
   radio.openReadingPipe(1,pipes[0]);
+  radio.openWritingPipe(pipes[1]);
   radio.startListening();
   radio.printDetails();
 }
@@ -62,28 +62,39 @@ void setup(void)
 void loop(void)
 {
 
+    /*
+    i++;
+    if ((i % 30000) == 0) 
+    {
+      printf("In loop\n");
+      i = 0
+    }
+    */
     // if there is data ready
     if ( radio.available() )
     {
+      printf("Available\n");
       // Dump the payloads until we've gotten everything
       unsigned long message;
       bool done = false;
+      
       while (!done)
       {
+        printf("Inner loop\n");
         // Fetch the payload, and see if this was the last one.
         done = radio.read( &message, sizeof(unsigned long) );
 
         // Spew it
-        printf("Got message %lu...",message);
+        printf("Got message %lu...\n",message);
         if (message == 1){
           digitalWrite(relay, LOW);
         }else{
           digitalWrite(relay, HIGH);
         }
 
-	// Delay just a little bit to let the other unit
-	// make the transition to receiver
-	delay(20);
+	      // Delay just a little bit to let the other unit
+	      // make the transition to receiver
+	      delay(20);
       }
 
       // First, stop listening so we can talk
